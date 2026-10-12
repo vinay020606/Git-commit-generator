@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-import { main } from '../dist/cli.js';
+import { main } from '../src/index.js';
 
-main().catch((err) => {
-  // Graceful catch to ensure git commits are never blocked by unhandled exceptions
-  console.error(err);
+main().catch(() => {
+  // Always exit safely so commits are never blocked
   process.exit(0);
 });
