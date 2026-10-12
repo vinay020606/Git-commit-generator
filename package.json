@@ -1,0 +1,44 @@
+{
+  "name": "git-commit-format",
+  "version": "1.0.0",
+  "description": "AI-powered Conventional Commit suggestions directly in your git commit workflow with one-keypress accept.",
+  "keywords": [
+    "git",
+    "git-hook",
+    "commit",
+    "commit-message",
+    "conventional-commits",
+    "openai",
+    "ai",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "git-commit-format": "bin/cli.js",
+    "git-commit_format": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepare": "npm run build",
+    "test": "node --test dist/**/*.test.js",
+    "test:src": "tsc && node --test dist/test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}
