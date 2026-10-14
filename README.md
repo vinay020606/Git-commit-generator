@@ -1,4 +1,4 @@
-# git-commit-format
+# git-commit-generator
 
 > **Zero-dependency** AI tool that suggests clean [Conventional Commit](https://www.conventionalcommits.org/) messages directly when you run `git commit`. Accept with one keypress!
 
@@ -25,7 +25,7 @@ Suggested: feat(auth): add refresh token rotation
 ### 1. Install globally
 
 ```bash
-npm install -g git-commit-format
+npm install -g git-commit-generator
 ```
 
 *(Or use locally without installing: `node bin/cli.js init`)*
@@ -45,7 +45,7 @@ OPENAI_API_KEY=sk-...
 
 Run inside your repository:
 ```bash
-git-commit-format init
+git-commit-generator init
 ```
 
 That's it! 
@@ -84,7 +84,8 @@ Set these in your environment or repository `.env`:
 | `OPENAI_API_KEY` | *(none)* | Your OpenAI API key |
 | `OPENAI_MODEL` | `gpt-4o-mini` | AI Model (`gpt-4o-mini`, `gpt-4o`, etc.) |
 | `OPENAI_BASE_URL` | `https://api.openai.com/v1` | Optional: Compatible with Ollama, Groq, DeepSeek |
-| `GIT_COMMIT_FORMAT_MAX_LINES` | `200` | Max lines of diff sent to the AI |
+| `GIT_COMMIT_GENERATOR_MAX_LINES` | `200` | Max lines of diff sent to the AI |
+| `GIT_COMMIT_GENERATOR_TIMEOUT` | `8000` | Timeout in ms for AI request |
 
 ### Using with Local Ollama (Free & Offline)
 
@@ -99,9 +100,9 @@ export OPENAI_MODEL="llama3"
 ## 🛠️ CLI Commands
 
 ```bash
-git-commit-format init       # Enable in current repository
-git-commit-format uninstall  # Remove hook from repository
-git-commit-format suggest    # Preview suggestion without committing
+git-commit-generator init       # Enable in current repository
+git-commit-generator uninstall  # Remove hook from repository
+git-commit-generator suggest    # Preview suggestion without committing
 ```
 
 ---

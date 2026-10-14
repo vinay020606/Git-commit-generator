@@ -1,5 +1,5 @@
 {
-  "name": "git-commit-format",
+  "name": "git-commit-generator",
   "version": "1.0.0",
   "description": "Zero-dependency AI-powered Conventional Commit suggestions directly in your git commit workflow.",
   "keywords": [
@@ -12,10 +12,19 @@
     "ai",
     "cli"
   ],
-  "author": "",
+  "author": "Vinay <s3607410@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinay020606/Git-commit-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vinay020606/Git-commit-generator/issues"
+  },
+  "homepage": "https://github.com/vinay020606/Git-commit-generator#readme",
   "main": "src/index.js",
   "bin": {
+    "git-commit-generator": "bin/cli.js",
     "git-commit-format": "bin/cli.js"
   },
   "files": [
@@ -26,7 +35,8 @@
   ],
   "type": "module",
   "scripts": {
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "prepublishOnly": "npm test"
   },
   "engines": {
     "node": ">=18.0.0"

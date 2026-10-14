@@ -26,8 +26,8 @@ export function getConfig() {
     apiKey: process.env.OPENAI_API_KEY || envFile.OPENAI_API_KEY || '',
     model: process.env.OPENAI_MODEL || envFile.OPENAI_MODEL || 'gpt-4o-mini',
     baseUrl: (process.env.OPENAI_BASE_URL || envFile.OPENAI_BASE_URL || 'https://api.openai.com/v1').replace(/\/+$/, ''),
-    maxLines: parseInt(process.env.GIT_COMMIT_FORMAT_MAX_LINES || '200', 10),
-    timeout: 8000
+    maxLines: parseInt(process.env.GIT_COMMIT_GENERATOR_MAX_LINES || process.env.GIT_COMMIT_FORMAT_MAX_LINES || envFile.GIT_COMMIT_GENERATOR_MAX_LINES || envFile.GIT_COMMIT_FORMAT_MAX_LINES || '200', 10),
+    timeout: parseInt(process.env.GIT_COMMIT_GENERATOR_TIMEOUT || process.env.GIT_COMMIT_FORMAT_TIMEOUT || envFile.GIT_COMMIT_GENERATOR_TIMEOUT || envFile.GIT_COMMIT_FORMAT_TIMEOUT || '8000', 10)
   };
 }
 
@@ -205,13 +205,15 @@ export async function promptEdit(suggestion) {
  */
 export function getHookScript() {
   return `#!/bin/sh
-# git-commit-format hook
-if command -v git-commit-format >/dev/null 2>&1; then
+# git-commit-generator hook
+if command -v git-commit-generator >/dev/null 2>&1; then
+  CMD="git-commit-generator"
+elif command -v git-commit-format >/dev/null 2>&1; then
   CMD="git-commit-format"
 elif [ -f "./bin/cli.js" ]; then
   CMD="node ./bin/cli.js"
 else
-  CMD="npx --no-install git-commit-format"
+  CMD="npx --no-install git-commit-generator"
 fi
 
 if ( : < /dev/tty ) 2>/dev/null; then
@@ -299,12 +301,12 @@ export async function main(args = process.argv.slice(2)) {
   }
 
   console.log(`
-git-commit-format
+git-commit-generator
 Simple, zero-dependency AI commit message suggestions.
 
 Commands:
-  git-commit-format init       Install git commit hook
-  git-commit-format uninstall  Remove git commit hook
-  git-commit-format suggest    Preview suggestion for staged changes
+  git-commit-generator init       Install git commit hook
+  git-commit-generator uninstall  Remove git commit hook
+  git-commit-generator suggest    Preview suggestion for staged changes
 `);
 }

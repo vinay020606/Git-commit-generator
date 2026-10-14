@@ -42,5 +42,5 @@ test('saveCommitMessage writes clean message to file', () => {
 test('getHookScript contains executable shell logic', () => {
   const script = getHookScript();
   assert.ok(script.startsWith('#!/bin/sh'));
-  assert.ok(script.includes('git-commit-format'));
+  assert.ok(script.includes('git-commit-generator'));
 });
